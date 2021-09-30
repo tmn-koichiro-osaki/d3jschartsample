@@ -1,12 +1,12 @@
-import React from 'react'; 
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import top from './Top';
-import ComboChart from './Chart/Combo/ComboChart';
-import PieChart from './Chart/Pie/PieChart';
+import React from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import top from "./Top";
+import ComboChart from "./Chart/Combo/ComboChart";
+import PieChart from "./Chart/Pie/PieChart";
 
 class App extends React.Component {
-  render(){
-    return(
+  render() {
+    return (
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={top} />　
@@ -15,7 +15,7 @@ class App extends React.Component {
         </Switch>
       </BrowserRouter>
     );
-  };
+  }
 }
 
 export default App;
