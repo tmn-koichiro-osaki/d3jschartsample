@@ -8,6 +8,7 @@ class Top extends React.Component {
             <div>
                 <div><Link to="/">Top</Link></div>
                 <div><Link to="/combochart">ComboChart</Link></div>
+                <div><Link to="/piechart">PieChart</Link></div>
             </div>
         );
     }

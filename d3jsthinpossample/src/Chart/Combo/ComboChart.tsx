@@ -37,11 +37,6 @@ let size = {
     //Y軸2-3の間
     margin2_3: 75
 };
-/* let width = 1050;
-let height = 300;
-let margin = {top: 100, right: 200, bottom: 50, left: 100};
-//2-3のマージン
-let margin2_3 = 75; */
 //タイトル
 let title = {
     title: '時間帯別売上高',
@@ -49,24 +44,15 @@ let title = {
     yTitle2: '純売上',
     yTitle3: '客数',
 }
-/* let title = '時間帯別売上高';
-let yTitle1 = '純売上（累計）';
-let yTitle2 = '純売上';
-let yTitle3 = '客数'; */
 //カラー
 let color = {
     data1Color: '#2963C1',
     data2Color: '#FBA738',
     data3Color: '#01C89F',
 }
-/* let data1Color = '#2963C1';
-let data2Color = '#FBA738';
-let data3Color = '#01C89F'; */
-
-
 
 class ComboChart extends React.Component{
-    renderchart(){
+    componentDidMount(){
         let creator = new ChartCreator(dataset,maxValues,size,title,color,'#canvas');
         creator.DrawChart();
     }
@@ -74,8 +60,7 @@ class ComboChart extends React.Component{
         return (
             <div >
                 <Top/>
-                <button onClick={this.renderchart}>render chart</button>
-                <div id='canvas' onLoad={this.renderchart} />
+                <div id='canvas' />
             </div>
           );
     }
