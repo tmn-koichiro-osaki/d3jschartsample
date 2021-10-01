@@ -172,13 +172,9 @@ export class ChartCreator {
           .style("top", e.pageY - 20 + "px")
           .style("left", e.pageX + 10 + "px");
       })
-      .on("mouseout", function (d: any) {
-        tooltip.style("visibility", "hidden");
-      })
+      .on("mouseout", (d: any) => tooltip.style("visibility", "hidden"))
       .transition() // アニメーションする
-      .delay(function (d: any, i: number) {
-        return i * 100;
-      })
+      .delay((d: any, i: number) => i * 100)
       .duration(500) // 500ミリ秒かけて以下の状態にする
       // 追加ここまで
       .attr("y", (d: ComboCahartData) => yScale(d.totalSum))
@@ -207,12 +203,8 @@ export class ChartCreator {
   ) {
     let line = d3
       .line<(string | number)[]>()
-      .x(function (d, i) {
-        return xScale(d[0]) + xScale.bandwidth() / 2;
-      })
-      .y(function (d) {
-        return yScale(d[dataIndexs]);
-      });
+      .x((d, i) => xScale(d[0]) + xScale.bandwidth() / 2)
+      .y((d) => yScale(d[dataIndexs]));
     //変えれそう
     let datasetForChart = this.dataset.map((d) => [
       d.header,
@@ -237,18 +229,12 @@ export class ChartCreator {
       .attr("stroke", "white")
       .data(datasetForChart)
       .attr("fill", color)
-      .attr("cx", function (d: any, i: any) {
-        return xScale(d[0]) + xScale.bandwidth() / 2;
-      })
+      .attr("cx", (d: any, i: any) => xScale(d[0]) + xScale.bandwidth() / 2)
       .attr("cy", this.size.height)
       .transition()
-      .delay(function (d: any, i: number) {
-        return i * 100;
-      })
+      .delay((d: any, i: number) => i * 100)
       .duration(1000)
-      .attr("cy", function (d: any) {
-        return yScale(d[dataIndexs]);
-      })
+      .attr("cy", (d: any) => yScale(d[dataIndexs]))
       .attr("r", 3);
   }
 

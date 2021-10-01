@@ -36,9 +36,7 @@ export class SimplePieChartCreator {
     // 4. pieチャートデータセット用関数の設定
     let pie = d3
       .pie()
-      .value(function (d: any) {
-        return d.value;
-      })
+      .value((d: any) => d.value)
       .sort(null);
 
     // 5. pieチャートSVG要素の設定
@@ -58,7 +56,7 @@ export class SimplePieChartCreator {
     pieGroup
       .append("path")
       .attr("d", arc)
-      .attr("fill", function (d, i) {
+      .attr("fill", (d, i) => {
         let index = i % colorPallet.length;
         return colorPallet[index];
       })
@@ -75,15 +73,11 @@ export class SimplePieChartCreator {
     pieGroup
       .append("text")
       .attr("fill", "black")
-      .attr("transform", function (d: any) {
-        return "translate(" + text.centroid(d) + ")";
-      })
+      .attr("transform", (d: any) => "translate(" + text.centroid(d) + ")")
       .attr("dy", "5px")
       .attr("font", "8px")
       .attr("text-anchor", "middle")
       .attr("alignment-baseline", "middle")
-      .text(function (d: any) {
-        return d.data.value + "%";
-      });
+      .text((d: any) => d.data.value + "%");
   }
 }

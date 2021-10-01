@@ -53,9 +53,7 @@ export class PieChartCreator {
     // 4. pieチャートデータセット用関数の設定
     var pie = d3
       .pie<PieChartData>()
-      .value(function (d: PieChartData) {
-        return d.value;
-      })
+      .value((d: PieChartData) => d.value)
       .sort(null);
 
     // 5. pieチャートSVG要素の設定
@@ -74,7 +72,7 @@ export class PieChartCreator {
     pieGroup
       .append("path")
       .attr("d", arc)
-      .attr("fill", function (d, i) {
+      .attr("fill", (d, i) => {
         let index = i % colorPallet.length;
         return colorPallet[index];
       })
@@ -91,16 +89,12 @@ export class PieChartCreator {
     pieGroup
       .append("text")
       .attr("fill", "black")
-      .attr("transform", function (d: any) {
-        return "translate(" + text.centroid(d) + ")";
-      })
+      .attr("transform", (d: any) => "translate(" + text.centroid(d) + ")")
       .attr("dy", "5px")
       .attr("font", "10px")
       .attr("text-anchor", "middle")
       .attr("alignment-baseline", "middle")
-      .text(function (d) {
-        return d.data.value + "%";
-      });
+      .text((d) => d.data.value + "%");
 
     // 凡例名称
     var legendVals = this.dataset.map((item) => item.label);
@@ -114,19 +108,17 @@ export class PieChartCreator {
       .enter()
       .append("g")
       .attr("class", "legends")
-      .attr("transform", function (d, i) {
-        {
-          let x = 180;
-          let y = 40;
-          if (i % 2 == 1) {
-            x = 300;
-            y = (i - 1) * 20 + y;
-          } else {
-            y = (i / 2) * 20 + y;
-          }
-
-          return "translate(" + x + "," + y + ")"; // 各凡例をy方向に20px間隔で移動
+      .attr("transform", (d, i) => {
+        let x = 180;
+        let y = 40;
+        if (i % 2 == 1) {
+          x = 300;
+          y = (i - 1) * 20 + y;
+        } else {
+          y = (i / 2) * 20 + y;
         }
+
+        return "translate(" + x + "," + y + ")"; // 各凡例をy方向に20px間隔で移動
       });
 
     legend
@@ -135,7 +127,7 @@ export class PieChartCreator {
       .attr("y", 0)
       .attr("width", 10)
       .attr("height", 10)
-      .style("fill", function (d, i) {
+      .style("fill", (d, i) => {
         let index = i % colorPallet.length;
         return colorPallet[index];
       }); // 色付け
@@ -144,9 +136,7 @@ export class PieChartCreator {
       .append("text") // 凡例の文言
       .attr("x", 20)
       .attr("y", 10)
-      .text(function (d, i) {
-        return d;
-      })
+      .text((d, i) => d)
       .attr("class", "textselected")
       .style("text-anchor", "start")
       .style("font-size", 15);
